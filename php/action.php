@@ -140,8 +140,28 @@
 				$db = pg_connect( "$host $port $dbname $credentials"  );
 				
 				foreach($a as $i){
-				$sql="insert into $movie(name,phone,email,seats) values ('$name',$ph,'$em','$i');";
+				$sql="insert into $movie(name,phone,email,seats,namount) values ('$name',$ph,'$em','$i','$sum');";
 				pg_query($db, $sql);
+				/*
+				$sql="create or replace function tr() 
+				returns trigger 
+				language plpgsql as 
+				$$
+				begin 
+					update $movie set amount=$sum where email=$em;
+					return new;
+				end;
+				$$;";
+				pg_query($db, $sql);
+				
+				$sql="create trigger tr1 after update of email on m1s1 for each row execute procedure tr();
+				create trigger tr2 after update of email on m1s2 for each row execute procedure tr();
+				create trigger tr3 after update of email on m1s3 for each row execute procedure tr();
+				create trigger tr4 after update of email on m2s1 for each row execute procedure tr();
+				create trigger tr5 after update of email on m2s2 for each row execute procedure tr();
+				create trigger tr6 after update of email on m2s3 for each row execute procedure tr();";
+				pg_query($db, $sql);
+				*/
 				}
 			?>
 			<br><br><br><br><br>

@@ -23,7 +23,7 @@
 	$db = pg_connect( "$host $port $dbname $credentials"  );
 	
 	//$db=new mysqli("localhost","root","Sanmitha@33","jazz",3306);
-	$res4=pg_query($db,"select * from m2s1;");
+	$res4=pg_query($db,"select * from v4;");
 				$r4=pg_fetch_all($res4);
 				//var_dump($r1);
 				if($r4){
